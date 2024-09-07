@@ -10,11 +10,31 @@ function setup() {
   button = select('#plotButton');
   button.mousePressed(sanitizeInput); 
 
-  setObstacles();
   let p1 = new Player("Player 1", "#d8411c");
   let p2 = new Player("Player 2", "#4441fa");
   p1.draw();
   p2.draw();
+
+  let collisions = new collision();
+
+  setObstacles(collisions);
+}
+
+function setObstacles(collisions){
+
+  let obstacleAmount = random(3,9);
+  fill(10, 113, 53);
+
+  for (let i =0; i<= obstacleAmount; i++){
+    let x = random(0, width);
+    let y = random(0, height);
+    let radius = random(5, 50);
+  
+    let ob = new obstacle(x, y, radius);
+    ob.draw();
+    collisions.addCollision(ob);
+  }
+  collisions.printObstacles();
 }
   
 function draw() {
@@ -26,20 +46,6 @@ function draw() {
   if (func) {
     history.push(func);
     plot();
-  }
-}
-
-function setObstacles(){
-
-  let obstacleAmount = random(3,9);
-  fill(10, 113, 53);
-
-  for (let i =0; i<= obstacleAmount; i++){
-    let x = random(0, width);
-    let y = random(0, height);
-    let diameter = random(10, 100);
-  
-    circle(x, y, diameter);
   }
 }
 
