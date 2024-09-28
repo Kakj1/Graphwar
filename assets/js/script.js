@@ -2,6 +2,7 @@ let func = '';
 let input; 
 let button; 
 let history = [];
+let collisions = new collision();
 
 function setup() {
   createCanvas(600, 500);
@@ -10,14 +11,12 @@ function setup() {
   button = select('#plotButton');
   button.mousePressed(sanitizeInput); 
 
+  setObstacles(collisions);
+
   let p1 = new Player("Player 1", "#d8411c");
   let p2 = new Player("Player 2", "#4441fa");
   p1.draw();
   p2.draw();
-
-  let collisions = new collision();
-
-  setObstacles(collisions);
 }
 
 function setObstacles(collisions){
@@ -63,6 +62,11 @@ function plot() {
       let y;
       try {
           y = eval(func.replace(/x/g, `(${x})`));
+          if(collisions.detectCollision(xCoord, y)){
+            console.log(y);
+            console.log(xCoord);
+          }
+          
           vertex(xCoord, height / 2 - y);
       } catch (e) {
           console.error("Invalid function input", e);

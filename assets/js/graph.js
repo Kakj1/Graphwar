@@ -2,6 +2,7 @@ class Graph {
     constructor(func) {
         this.func = func.replace('^', '**').replace(/ln/g, 'Math.log');
         this.history = []
+        this.linePlot 
     }
 
     plot() {
@@ -14,6 +15,7 @@ class Graph {
             let y;
             try {
                 y = eval(func.replace(/x/g, `(${x})`));
+                console.log(y);
                 vertex(xCoord, height / 2 - y);
             } catch (e) {
                 console.error("Invalid function input", e);

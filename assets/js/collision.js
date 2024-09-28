@@ -1,13 +1,17 @@
-class collision{
-    constructor(){
+class collision {
+    constructor() {
         this.obstacles = [];
     }
 
-    addCollision(obstacle){
+    addCollision(obstacle) {
         this.obstacles.push(obstacle);
     }
-    
-    printObstacles(){
-        this.obstacles.forEach(function(obstacle){console.log(obstacle);});
+
+    printObstacles() {
+        this.obstacles.forEach(function (obstacle) { console.log(obstacle); });
+    }
+
+    detectCollision(x, y) {
+        this.obstacles.forEach(function (obstacle) { if (obstacle.isHit(x, y)) { return true } });
     }
 }
