@@ -23,17 +23,23 @@ function setObstacles(collisions){
 
   let obstacleAmount = random(3,9);
   fill(10, 113, 53);
+  //  let x = random(0, width);
+  //   let y = random(0, height);
+  //   let radius = random(5, 50);
+  let ob = new obstacle(10, 10, 50);
+  ob.draw();
+  collisions.addCollision(ob);
 
-  for (let i =0; i<= obstacleAmount; i++){
-    let x = random(0, width);
-    let y = random(0, height);
-    let radius = random(5, 50);
+  // for (let i =0; i<= obstacleAmount; i++){
+  //   let x = random(0, width);
+  //   let y = random(0, height);
+  //   let radius = random(5, 50);
   
-    let ob = new obstacle(x, y, radius);
-    ob.draw();
-    collisions.addCollision(ob);
-  }
-  collisions.printObstacles();
+  //   let ob = new obstacle(x, y, radius);
+  //   ob.draw();
+  //   collisions.addCollision(ob);
+  // }
+  // collisions.printObstacles(); 
 }
   
 function draw() {
@@ -41,6 +47,8 @@ function draw() {
   stroke(255);
   line(0, height / 2, width, height / 2);                   // X-axis
   line(width / 2, 0, width / 2, height);                    // Y-axis
+
+
 
   if (func) {
     history.push(func);
@@ -57,15 +65,19 @@ function plot() {
   stroke(0, 0, 0);
 
   beginShape();
+
   for (let x = -width / 2; x < width / 2; x++) {
       let xCoord = x + width / 2;
       let y;
       try {
           y = eval(func.replace(/x/g, `(${x})`));
-          if(collisions.detectCollision(xCoord, y)){
+          console.log("y " + y);
+          console.log(collisions.detectCollision(x, y));
+          if(collisions.detectCollision(x, y)){
             console.log(y);
-            console.log(xCoord);
-          }
+            console.log(x);
+            collisions.lengthOfObs();
+          } 
           
           vertex(xCoord, height / 2 - y);
       } catch (e) {
