@@ -12,8 +12,7 @@ class collision {
     }
 
     detectCollision(x, y) {
-        this.obstacles.forEach(function (obstacle) {  if (obstacle.isHit(x, y)) {console.log(obstacle.isHit(x, y)); return true; } });
-        return false;
+        return this.obstacles.some(function(obstacle){const Ishit = obstacle.isHit(x + 300, y + 250); return Ishit;} )
     }
 
     lengthOfObs(){
