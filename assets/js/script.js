@@ -12,7 +12,8 @@ function setup() {
   button.mousePressed(sanitizeInput); 
 
   setObstacles(collisions);
-
+  console.log(collisions.detectCollision(300, 250));
+  
   let p1 = new Player("Player 1", "#d8411c");
   let p2 = new Player("Player 2", "#4441fa");
   p1.draw();
@@ -26,7 +27,7 @@ function setObstacles(collisions){
   //  let x = random(0, width);
   //   let y = random(0, height);
   //   let radius = random(5, 50);
-  let ob = new obstacle(10, 10, 50);
+  let ob = new obstacle(0, 0, 50);
   ob.draw();
   collisions.addCollision(ob);
 
@@ -73,9 +74,7 @@ function plot() {
           y = eval(func.replace(/x/g, `(${x})`));
           console.log("y " + y);
           console.log(collisions.detectCollision(x, y));
-          if(collisions.detectCollision(x, y)){
-            console.log(y);
-            console.log(x);
+          if(collisions.detectCollision(x + 300, y + 250)){
             collisions.lengthOfObs();
           } 
           

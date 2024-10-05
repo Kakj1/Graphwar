@@ -12,7 +12,7 @@ class collision {
     }
 
     detectCollision(x, y) {
-        this.obstacles.forEach(function (obstacle) { console.log(obstacle.isHit(x, y)); if (obstacle.isHit(x, y)) { return true } });
+        this.obstacles.forEach(function (obstacle) {  if (obstacle.isHit(x, y)) {console.log(obstacle.isHit(x, y)); return true; } });
         return false;
     }
 

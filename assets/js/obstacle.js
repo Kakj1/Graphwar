@@ -1,7 +1,7 @@
 class obstacle{
     constructor(x, y, radius){
-        this.x = x;
-        this.y = y;
+        this.x = x + 300;
+        this.y = y + 250;
         this.radius = radius;
     }
 
