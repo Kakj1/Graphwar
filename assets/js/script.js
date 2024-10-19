@@ -38,10 +38,12 @@ function setObstacles(collisions){
 }
   
 function draw() {
-  
+  clear();
   stroke(255);
   line(0, height / 2, width, height / 2);                   // X-axis
   line(width / 2, 0, width / 2, height);                    // Y-axis
+
+  p1.draw2(p1.x, p1.y);
 
   plot();
 
@@ -62,8 +64,9 @@ function plot() { //Split plot into positve and negitve areas of graph, and orgi
   console.log("plot");
 
   beginShape();
-
+  stroke(255, 0, 0);
   for (let x = 0;  x < width / 2; x++) {
+    
       let xCoord = x + width / 2 + p1.x;
       let y;
       try {
@@ -76,13 +79,17 @@ function plot() { //Split plot into positve and negitve areas of graph, and orgi
           } 
           
           vertex(xCoord -300, height/2 - y -250);
+          
       } catch (e) {
           console.error("Invalid function input", e);
           break;
       }
   }
-
+  endShape();
+  beginShape();
+  stroke(0, 0, 255);
   for (let x = 0; x > -width /2; x--){ //using p1 for testing. TODO add player turns
+    
     let xCoord = x + width / 2 + p1.x;
     let y;
 

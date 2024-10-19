@@ -16,4 +16,12 @@ class Player{
         circle(this.x, this.y, this.diameter);
         text(this.label + " (" + floor(this.x) + "," + floor(this.y) + ")" , this.x - (4 * this.diameter), this.y - this.diameter);
     }
+
+    draw2(x, y){
+        fill(this.colour);
+        stroke("black");
+
+        circle(this.x, this.y, this.diameter);
+        text(this.label + " (" + floor(this.x) + "," + floor(this.y) + ")" , this.x - (4 * this.diameter), this.y - this.diameter);
+    }
 }
