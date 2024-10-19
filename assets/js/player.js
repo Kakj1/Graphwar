@@ -2,7 +2,7 @@ class Player{
     constructor(label, colour) {
         this.label = label;
         this.x = 0;
-        this.y = 0;
+        this.y = 0 ;
         this.diameter = 15;
         this.colour = colour;
     }

@@ -4,6 +4,9 @@ let button;
 let history = [];
 let collisions = new collision();
 
+let p1 = new Player("Player 1", "#d8411c");
+let p2 = new Player("Player 2", "#4441fa");
+
 function setup() {
   createCanvas(600, 500);
 
@@ -13,8 +16,6 @@ function setup() {
 
   setObstacles(collisions);
 
-  let p1 = new Player("Player 1", "#d8411c");
-  let p2 = new Player("Player 2", "#4441fa");
   p1.draw();
   p2.draw();
 }
@@ -54,7 +55,7 @@ function sanitizeInput() {
   func = input.value().replace('^', '**').replace(/ln/g, 'Math.log'); 
 }
 
-function plot() {
+function plot() { //Split plot into positve and negitve areas of graph, and orgin needs to be at players.
   noFill();
   stroke(0, 0, 0);
 
@@ -62,23 +63,43 @@ function plot() {
 
   beginShape();
 
-  for (let x = -width / 2; x < width / 2; x++) {
-      let xCoord = x + width / 2;
+  for (let x = 0;  x < width / 2; x++) {
+      let xCoord = x + width / 2 + p1.x;
       let y;
       try {
-          y = eval(func.replace(/x/g, `(${x})`));
-          // console.log("y " + y);
+          y = eval(func.replace(/x/g, `(${x})`)) - p1.y;
+          console.log("y " + y);
           // console.log(collisions.detectCollision(x, y));
-          if(collisions.detectCollision(x, y)){
-            console.log(x, y);
+          if(collisions.detectCollision(x, y)){ // TODO, fix collision
+            //console.log(x, y);
+            break;
           } 
           
-          vertex(xCoord, height / 2 - y);
+          vertex(xCoord -300, height/2 - y -250);
       } catch (e) {
           console.error("Invalid function input", e);
           break;
       }
   }
+
+  for (let x = 0; x > -width /2; x--){ //using p1 for testing. TODO add player turns
+    let xCoord = x + width / 2 + p1.x;
+    let y;
+
+    try {
+      y = eval(func.replace(/x/g, `(${x})`)) - p1.y;
+      // console.log("y " + y);
+      // console.log(collisions.detectCollision(x, y));
+      if(collisions.detectCollision(x, y)){
+        //console.log(x, y);
+        break;
+      }
+
+      vertex(xCoord -300, height / 2 - y -250);
+    } catch (e) {
+      console.error("Invalid function input", e);
+      break;
+  }
+ }
   endShape();
-  
 }
