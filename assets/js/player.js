@@ -24,4 +24,58 @@ class Player{
         circle(this.x, this.y, this.diameter);
         text(this.label + " (" + floor(this.x) + "," + floor(this.y) + ")" , this.x - (4 * this.diameter), this.y - this.diameter);
     }
+
+    plotGraph(){
+        noFill();
+        stroke(0, 0, 0);
+      
+        console.log("plot");
+      
+        beginShape();
+        stroke(255, 0, 0);
+        for (let x = 0;  x < width / 2; x++) {
+          
+            let xCoord = x + width / 2 + this.x;
+            let y;
+            try {
+                y = eval(func.replace(/x/g, `(${x})`)) - this.y;
+                console.log("y " + y);
+                // console.log(collisions.detectCollision(x, y));
+                if(collisions.detectCollision(x, y)){ // TODO, fix collision
+                  //console.log(x, y);
+                  break;
+                } 
+                
+                vertex(xCoord -300, height/2 - y -250);
+                
+            } catch (e) {
+                console.error("Invalid function input", e);
+                break;
+            }
+        }
+        endShape();
+        beginShape();
+        stroke(0, 0, 255);
+        for (let x = 0; x > -width /2; x--){ //using p1 for testing. TODO add player turns
+          
+          let xCoord = x + width / 2 + this.x;
+          let y;
+      
+          try {
+            y = eval(func.replace(/x/g, `(${x})`)) - this.y;
+            // console.log("y " + y);
+            // console.log(collisions.detectCollision(x, y));
+            if(collisions.detectCollision(x, y)){
+              //console.log(x, y);
+              break;
+            }
+      
+            vertex(xCoord -300, height / 2 - y -250);
+          } catch (e) {
+            console.error("Invalid function input", e);
+            break;
+        }
+       }
+        endShape();
+    }
 }
