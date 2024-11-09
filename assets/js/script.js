@@ -1,11 +1,16 @@
 let func = ''; 
+let func2 = '';
 let input; 
 let button; 
+let input2;
+let button2;
 let history = [];
 let collisions = new collision();
 
 let p1 = new Player("Player 1", "#d8411c");
 let p2 = new Player("Player 2", "#4441fa");
+
+let obstacles = [];
 
 let turn = "Player 1";
 
@@ -15,6 +20,10 @@ function setup() {
   input = select('#functionInput');
   button = select('#plotButton');
   button.mousePressed(sanitizeInput); 
+
+  input2 = select('#functionInput2');
+  button2 = select('#plotButton2');
+  button2.mousePressed(sanitizeInput); 
 
   setObstacles(collisions);
 
@@ -33,6 +42,7 @@ function setObstacles(collisions){
     let radius = random(5, 50);
   
     let ob = new obstacle(x, y, radius);
+    obstacles.push(ob);
     ob.draw();
     collisions.addCollision(ob);
   }
@@ -50,13 +60,20 @@ function draw() {
   p1.draw2(p1.x, p1.y);
   p2.draw2(p2.x, p2.y);
 
-  if(turn == "Player 1"){
-    p1.plotGraph();
-    setTimeout(Switch, 5000);
-  }else{
-    p2.plotGraph();
-    setTimeout(Switch, 5000);
-  }
+  p1.plotGraph(func);
+  //p2.plotGraph(func2);
+
+
+  fill(10, 113, 53);
+  obstacles.forEach(ob => ob.draw());
+
+  // if(turn == "Player 1"){
+  //   p1.plotGraph();
+  //   setTimeout(Switch, 5000);
+  // }else{
+  //   p2.plotGraph();
+  //   setTimeout(Switch, 5000);
+  // }
 
   //plot(p1);
 
@@ -68,6 +85,7 @@ function draw() {
 
 function sanitizeInput() {
   func = input.value().replace('^', '**').replace(/ln/g, 'Math.log'); 
+  func2 = input2.value().replace('^', '**').replace(/ln/g, 'Math.log'); 
 }
 
 function plot(CurrentPlayer) { //Split plot into positve and negitve areas of graph, and orgin needs to be at players.

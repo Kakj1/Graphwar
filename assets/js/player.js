@@ -5,6 +5,7 @@ class Player{
         this.y = 0 ;
         this.diameter = 15;
         this.colour = colour;
+        this.graph = "";
     }
 
     draw(){
@@ -25,11 +26,11 @@ class Player{
         text(this.label + " (" + floor(this.x) + "," + floor(this.y) + ")" , this.x - (4 * this.diameter), this.y - this.diameter);
     }
 
-    plotGraph(){
+    plotGraph(func){
         noFill();
         stroke(0, 0, 0);
       
-        console.log("plot");
+        //console.log("plot");
       
         beginShape();
         stroke(255, 0, 0);
@@ -39,10 +40,13 @@ class Player{
             let y;
             try {
                 y = eval(func.replace(/x/g, `(${x})`)) - this.y;
-                console.log("y " + y);
-                // console.log(collisions.detectCollision(x, y));
+                console.log(func);
+                console.log(y);
+                console.log((func.replace(/x/g, `(${x})`)))
+                //console.log("y " + y);
+                //console.log(collisions.detectCollision(x, y));
                 if(collisions.detectCollision(x, y)){ // TODO, fix collision
-                  //console.log(x, y);
+                  console.log("Collision");
                   break;
                 } 
                 
@@ -66,7 +70,7 @@ class Player{
             // console.log("y " + y);
             // console.log(collisions.detectCollision(x, y));
             if(collisions.detectCollision(x, y)){
-              //console.log(x, y);
+              console.log("Collision");
               break;
             }
       
