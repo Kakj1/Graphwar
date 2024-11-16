@@ -29,6 +29,9 @@ function setup() {
 
   p1.draw();
   p2.draw();
+
+  let str = "x^2"
+  console.log("Eval " + math.evaluate(str.replace(/x/g, `(${4})`)));
 }
 
 function setObstacles(collisions){
@@ -61,7 +64,7 @@ function draw() {
   p2.draw2(p2.x, p2.y);
 
   p1.plotGraph(func);
-  //p2.plotGraph(func2);
+  p2.plotGraph(func2);
 
 
   fill(10, 113, 53);
