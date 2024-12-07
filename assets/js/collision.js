@@ -16,6 +16,6 @@ class collision {
     }
 
     lengthOfObs(){
-        console.log(this.obstacles);
+        //console.log(this.obstacles);
     }
 }

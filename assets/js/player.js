@@ -40,9 +40,11 @@ class Player{
             let y;
             try {
                 y = math.evaluate(func.replace(/x/g, `(${x})`)) - this.y;
-                
-                if(collisions.detectCollision(x, y)){ // TODO, fix collision
+                //console.log("Y " + y);
+                console.log("X and Y " + xCoord + " " + y)
+                if(collisions.detectCollision(xCoord, y)){ // TODO, fix collision
                   console.log("Collision");
+                  
                   break;
                 } 
                 
@@ -62,14 +64,16 @@ class Player{
       
           try {
             y = math.evaluate(func.replace(/x/g, `(${x})`)) - this.y;
-            if(collisions.detectCollision(x, y)){
+            console.log("X and Y " + xCoord + " " + y)
+            if(collisions.detectCollision(xCoord, y)){
               console.log("Collision");
+              
               break;
             }
       
             vertex(xCoord -300, height / 2 - y -250);
           } catch (e) {
-            console.error("Invalid function input", e);
+            // console.error("Invalid function input", e);
             break;
         }
        }

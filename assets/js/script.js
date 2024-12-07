@@ -31,7 +31,7 @@ function setup() {
   p2.draw();
 
   let str = "x^2"
-  console.log("Eval " + math.evaluate(str.replace(/x/g, `(${4})`)));
+  console.log("Eval " + (str.replace(/x/g, `(${4})`)));
 }
 
 function setObstacles(collisions){
@@ -87,15 +87,15 @@ function draw() {
 }
 
 function sanitizeInput() {
-  func = input.value().replace('^', '**').replace(/ln/g, 'Math.log'); 
-  func2 = input2.value().replace('^', '**').replace(/ln/g, 'Math.log'); 
+  func = input.value()./*replace('^', '**')*/replace(/ln/g, 'Math.log'); 
+  func2 = input2.value()./*replace('^', '**').*/replace(/ln/g, 'Math.log'); 
 }
 
 function plot(CurrentPlayer) { //Split plot into positve and negitve areas of graph, and orgin needs to be at players.
   noFill();
   stroke(0, 0, 0);
 
-  console.log("plot");
+  // console.log("plot");
 
   beginShape();
   stroke(255, 0, 0);
@@ -105,7 +105,7 @@ function plot(CurrentPlayer) { //Split plot into positve and negitve areas of gr
       let y;
       try {
           y = eval(func.replace(/x/g, `(${x})`)) - CurrentPlayer.y;
-          console.log("y " + y);
+          // console.log("y " + y);
           // console.log(collisions.detectCollision(x, y));
           if(collisions.detectCollision(x, y)){ // TODO, fix collision
             //console.log(x, y);
@@ -115,7 +115,7 @@ function plot(CurrentPlayer) { //Split plot into positve and negitve areas of gr
           vertex(xCoord -300, height/2 - y -250);
           
       } catch (e) {
-          console.error("Invalid function input", e);
+          // console.error("Invalid function input", e);
           break;
       }
   }
@@ -138,7 +138,7 @@ function plot(CurrentPlayer) { //Split plot into positve and negitve areas of gr
 
       vertex(xCoord -300, height / 2 - y -250);
     } catch (e) {
-      console.error("Invalid function input", e);
+      // console.error("Invalid function input", e);
       break;
   }
  }

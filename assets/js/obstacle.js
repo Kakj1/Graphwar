@@ -10,7 +10,7 @@ class obstacle{
     }
 
     isHit(x, y){
-        console.log(Math.sqrt((x - this.x)**2 + (y - this.y)**2));
+        //console.log(Math.sqrt((x - this.x)**2 + (y - this.y)**2));
         return Math.sqrt((x - this.x)**2 + (y - this.y)**2) <= this.radius
     }
 }
