@@ -41,8 +41,8 @@ class Player{
             try {
                 y = math.evaluate(func.replace(/x/g, `(${x})`)) - this.y;
                 //console.log("Y " + y);
-                console.log("X and Y " + xCoord + " " + y)
-                if(collisions.detectCollision(xCoord, y)){ // TODO, fix collision
+                //console.log("X and Y " + xCoord + " " + y)
+                if(collisions.detectCollision(x, y)){ // TODO, fix collision
                   console.log("Collision");
                   
                   break;
@@ -64,7 +64,7 @@ class Player{
       
           try {
             y = math.evaluate(func.replace(/x/g, `(${x})`)) - this.y;
-            console.log("X and Y " + xCoord + " " + y)
+            //console.log("X and Y " + xCoord + " " + y)
             if(collisions.detectCollision(xCoord, y)){
               console.log("Collision");
               

@@ -12,7 +12,7 @@ class collision {
     }
 
     detectCollision(x, y) {
-        return this.obstacles.some(function(obstacle){const Ishit = obstacle.isHit(x + 300, y + 250); return Ishit;} )
+        return this.obstacles.some(function(obstacle){const Ishit = obstacle.isHit(x -300, y-250); return Ishit;} )
     }
 
     lengthOfObs(){
