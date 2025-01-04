@@ -43,8 +43,9 @@ function setObstacles(collisions){
     let x = random(-width/2, width/2);
     let y = random(-height/2, height/2);
     let radius = random(5, 50);
+    let id = i;
   
-    let ob = new obstacle(x, y, radius);
+    let ob = new obstacle(x, y, radius, id);
     obstacles.push(ob);
     ob.draw();
     collisions.addCollision(ob);
